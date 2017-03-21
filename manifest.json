@@ -1,0 +1,43 @@
+{
+  "manifest_version": 2,
+  "name": "Crumbls",
+  "description": "Turn any website into an API",
+  "version": "0.1.1",
+  "permissions": [
+    "background",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "icons": {
+    "16": "chrome/icons/icon16.png",
+    "48": "chrome/icons/icon48.png",
+    "128": "chrome/icons/icon128.png"
+  },
+  "browser_action": {
+    "default_title": "artoo",
+    "default_icon": {
+      "19": "chrome/icons/icon19.png",
+      "38": "chrome/icons/icon38.png"
+    }
+  },
+  "content_scripts": [
+    {
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["chrome/content.js"],
+    "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["chrome/background.js"],
+    "persistent": true
+  },
+  "web_accessible_resources": [
+    "build/*",
+    "chrome/background.js"
+  ],
+  "content_security_policy": "default-src 'self';",
+  "minimum_chrome_version": "33"
+}

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mocha Test Runner</title>
+    <link rel="stylesheet" href="lib/mocha.css">
+    <style>
+      #artoo-doms {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <div id="artoo-doms"></div>
+
+    <!-- Testing -->
+    <script src="lib/mocha.js"></script>
+    <script src="lib/chai.js"></script>
+    <script>
+      mocha.setup('bdd');
+
+      Function.prototype.bind = function (oThis) {
+        if (typeof this !== "function") {
+          // closest thing possible to the ECMAScript 5
+          // internal IsCallable function
+          throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+        }
+
+        var aArgs = Array.prototype.slice.call(arguments, 1),
+            fToBind = this,
+            fNOP = function () {},
+            fBound = function () {
+              return fToBind.apply(this instanceof fNOP && oThis ?
+                      this :
+                      oThis,
+                     aArgs.concat(Array.prototype.slice.call(arguments)));
+            };
+
+        fNOP.prototype = this.prototype;
+        fBound.prototype = new fNOP();
+
+        return fBound;
+      };
+    </script>
+
+    <!-- Libraries -->
+    <script src="lib/jquery-2.1.3.min.js"></script>
+    <script src="lib/jquery.xmldom.js"></script>
+    <script src="lib/jquery.mockjax.js"></script>
+    <script src="lib/async.js"></script>
+
+    <!-- Helpers -->
+    <script src="helpers.js"></script>
+
+    <!-- START ARTOO IMPORTS -->
+    <script src="../src/artoo.js"></script>
+    <script src="../src/third_party/emmett.js"></script>
+    <script src="../src/third_party/jquery.simulate.js"></script>
+    <script src="../src/artoo.beep.js"></script>
+    <script src="../src/artoo.settings.js"></script>
+    <script src="../src/artoo.helpers.js"></script>
+    <script src="../src/artoo.parsers.js"></script>
+    <script src="../src/artoo.writers.js"></script>
+    <script src="../src/artoo.browser.js"></script>
+    <script src="../src/artoo.log.js"></script>
+    <script src="../src/artoo.dependencies.js"></script>
+    <script src="../src/artoo.countermeasures.js"></script>
+    <script src="../src/methods/artoo.methods.ajaxSniffer.js"></script>
+    <script src="../src/methods/artoo.methods.ajaxSpider.js"></script>
+    <script src="../src/methods/artoo.methods.autoExpand.js"></script>
+    <script src="../src/methods/artoo.methods.autoScroll.js"></script>
+    <script src="../src/methods/artoo.methods.cookies.js"></script>
+    <script src="../src/methods/artoo.methods.save.js"></script>
+    <script src="../src/methods/artoo.methods.scrape.js"></script>
+    <script src="../src/methods/artoo.methods.store.js"></script>
+    <script src="../src/methods/artoo.methods.ui.js"></script>
+    <!-- END ARTOO IMPORTS -->
+
+    <script src="../src/common/artoo.methods.asyncStore.js"></script>
+
+    <!-- Tests -->
+    <script src="suites/helpers.test.js"></script>
+    <script src="suites/parsers.test.js"></script>
+    <script src="suites/writers.test.js"></script>
+    <script src="suites/store.test.js"></script>
+    <script src="suites/ajaxSpiders.test.js"></script>
+    <script src="suites/scrape.test.js"></script>
+
+    <script type="text/javascript">
+
+      // Offering jQuery
+      window.artooPhantomJQuery = jQuery;
+
+      // Tweaking mockjax
+      $.mockjaxSettings.responseTime = 10;
+      $.mockjaxSettings.log = function() {};
+
+      // Exposing chai's assert
+      window.assert = chai.assert;
+
+      // Disabling artoo's console for tests
+      artoo.settings.log.enabled = false;
+
+      // Launching tests when artoo is ready
+      artoo.on('ready', function() {
+        console.log(artoo.$)
+        if (window.mochaPhantomJS) {
+          mochaPhantomJS.run();
+        } else {
+          mocha.run();
+        }
+      });
+    </script>
+    <script src="../src/artoo.init.js"></script>
+  </body>
+</html>

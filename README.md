@@ -23,6 +23,6 @@ How the server side version works ( membership required, currently hidden until 
 3) When completed, hit save.  It passes your request variables to the server, which builds a new job on the system.
 4) New page opens, provides data manipulation and data access URL.  The job is called live when the url is requested.
 
-Please report any bugs, errors or feature requests to chasecmiller@gmail.com.
+Please report any bugs, errors or feature requests to chase@crumbls.com.
 
-Want to develop this into more of a project?  I'm needing help from a gui designer.  Please email me at chasecmiller@gmail.com.  Right now, the project is open source.  At some point, I'd like to look at monetizing it and would include anyone who contributes on that.  I do have a budget for a good gui designer.
+Want to develop this into more of a project?  I'm needing help from a gui designer.  Please email me at chase@crumbls.com.  Right now, the project is open source.  At some point, I'd like to look at monetizing it and would include anyone who contributes on that.  I do have a budget for a good gui designer.

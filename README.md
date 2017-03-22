@@ -8,6 +8,8 @@ The server side sits on crumbls.com and runs PhantomJS by Ariya ( https://github
 
 The GUI isn't complete and I woudl love to work with a designer to develop it.
 
+Load the extension as an unpacked extension inside of chrome://extensions
+
 Once installed, you will get a plugin icon in the upper right.  
 
 How the client side version works:
@@ -17,7 +19,7 @@ How the client side version works:
 4) Click elements that you want to target.  It will look for similar elements based off of their css path.
 5) Console will report results as a JSON object.
 
-How the server side version works ( membership required, currently hidden until GUI is complete ):
+How the server side version works ( Hidden until GUI is complete ):
 1) Innitialize the extension ( background is blue )
 2) Navigate to the page you wish to click.
 3) When completed, hit save.  It passes your request variables to the server, which builds a new job on the system.
